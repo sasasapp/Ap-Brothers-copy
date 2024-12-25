@@ -1,0 +1,103 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdSense Ad Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        input[type="url"] {
+            width: 60%;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .adsense-container {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AdSense Ad Display</h1>
+        <p>Enter your AdSense link below and click 'Show Ad' to display the ad.</p>
+        
+        <!-- Input form for the user to provide a URL -->
+        <input type="url" id="adsenseLink" placeholder="Enter your AdSense link here">
+        <button onclick="showAd()">Show Ad</button>
+
+        <div class="adsense-container" id="adsenseContainer">
+            <!-- Placeholder for AdSense ad -->
+        </div>
+    </div>
+
+    <script>
+        // AdSense script loading function
+        function loadAdSense() {
+            var script = document.createElement("script");
+            script.async = true;
+            script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+            document.head.appendChild(script);
+        }
+
+        // Function to show AdSense ad when the user clicks the button
+        function showAd() {
+            var adsenseLink = document.getElementById('adsenseLink').value;
+
+            // Ensure the user has entered the link
+            if (adsenseLink) {
+                // Insert the AdSense ad unit into the page
+                var adContainer = document.getElementById('adsenseContainer');
+                
+                // Clear previous ad if any
+                adContainer.innerHTML = '';
+
+                // Example AdSense code, replace with your actual AdSense info
+                var adCode = `
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-XXXXXXX"  <!-- Replace with your AdSense Client ID -->
+                         data-ad-slot="XXXXXXX"            <!-- Replace with your AdSense Ad Slot -->
+                         data-ad-format="auto"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                `;
+                
+                // Add the ad code to the container
+                adContainer.innerHTML = adCode;
+
+                // Load the AdSense script dynamically
+                loadAdSense();
+
+                alert('Your AdSense ad is now displayed below!');
+            } else {
+                alert('Please enter a valid AdSense link.');
+            }
+        }
+    </script>
+</body>
+</html>
